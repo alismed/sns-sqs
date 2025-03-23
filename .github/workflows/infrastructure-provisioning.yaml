@@ -31,10 +31,6 @@ jobs:
             figlet "Error: Missing terraform.tfvars"
             exit 1
           fi
-          if [ ! -f infra/terraform.tfvars ]; then
-            figlet "Error: Missing terraform.tfvars"
-            exit 1
-          fi
 
       - name: Get Region from tfvars
         run: |
