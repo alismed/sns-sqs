@@ -13,26 +13,6 @@ tags = {
   Department  = "engineering"
 }
 
-policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": "*",
-      "Action": "sqs:*",
-      "Resource": "*"
-    }
-  ]
-}
-EOF
-
-redrive_policy = <<EOF
-{
-  "deadLetterTargetArn": "${aws_sqs_queue.deadletter.arn}",
-  "maxReceiveCount": 5
-}
-EOF
 
 deadletter_max_receive_count  = 5
 deadletter_name               = "myqueue-deadletter"
@@ -42,28 +22,5 @@ deadletter_delay_seconds      = 0
 deadletter_max_message_size   = 262144
 deadletter_message_wait_time  = 0
 deadletter_receive_wait_time  = 0
-deadletter_policy             = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": "*",
-      "Action": "sqs:*",
-      "Resource": "*"
-    }
-  ]
-}
-EOF
-
-deadletter_redrive_policy = <<EOF
-{
-  "deadLetterTargetArn": "${aws_sqs_queue.deadletter.arn}",
-  "maxReceiveCount": 5
-}
-EOF
-
-deadletter_destroy_infra = false
-
 
 destroy_infra = false
