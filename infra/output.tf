@@ -38,3 +38,44 @@ output "sqs_dlq_id" {
   value       = aws_sqs_queue.terraform_dlq.id
 }
 
+output "sns_topic_arn" {
+  description = "The ARN of the created SNS topic"
+  value       = aws_sns_topic.terraform_sns.arn
+}
+
+output "sns_topic_name" {
+  description = "The name of the created SNS topic"
+  value       = aws_sns_topic.terraform_sns.name
+}
+
+output "sns_topic_id" {
+  description = "The ID of the created SNS topic"
+  value       = aws_sns_topic.terraform_sns.id
+}
+
+output "sns_subscription_id" {
+  description = "The ID of the created SNS subscription"
+  value       = aws_sns_topic_subscription.terraform_subscription.id
+}
+
+output "sns_subscription_arn" {
+  description = "The ARN of the created SNS subscription"
+  value       = aws_sns_topic_subscription.terraform_subscription.arn
+}
+
+output "sns_subscription_endpoint" {
+  description = "The endpoint of the created SNS subscription"
+  value       = aws_sns_topic_subscription.terraform_subscription.endpoint
+}
+
+output "sns_subscription_protocol" {
+  description = "The protocol of the created SNS subscription"
+  value       = aws_sns_topic_subscription.terraform_subscription.protocol
+}
+
+output "sns_subscription_topic_arn" {
+  description = "The ARN of the SNS topic of the created SNS subscription"
+  value       = aws_sns_topic_subscription.terraform_subscription.topic_arn
+}
+
+
