@@ -21,6 +21,12 @@ variable "name" {
   description = "description"
 }
 
+variable "deadletter_name" {
+  type        = string
+  default     = ""
+  description = "description"
+}
+
 variable "visibility_timeout_seconds" {
   type        = number
   default     = 30
@@ -67,4 +73,34 @@ variable "deadletter_max_message_size" {
   type        = number
   default     = 262144
   description = "description"
+}
+
+variable "deadletter_max_receive_count" {
+  type        = number
+  default     = 3
+  description = "Maximum number of times a message can be received before being moved to DLQ"
+}
+
+variable "deadletter_receive_wait_time" {
+  type        = number
+  default     = 0
+  description = "The time for which a ReceiveMessage call will wait for a message to arrive in DLQ"
+}
+
+variable "deadletter_visibility_timeout" {
+  type        = number
+  default     = 30
+  description = "The time in seconds that the message will be invisible in the DLQ"
+}
+
+variable "deadletter_message_wait_time" {
+  type        = number
+  default     = 0
+  description = "The time for which a ReceiveMessage call will wait for a message to arrive in DLQ"
+}
+
+variable "deadletter_message_retention" {
+  type        = number
+  default     = 345600
+  description = "The time in seconds that the message will be invisible in the DLQ"
 }
