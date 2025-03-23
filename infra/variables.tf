@@ -5,8 +5,9 @@ variable "region" {
 }
 
 variable "profile" {
-  type    = string
-  default = "default"
+  type        = string
+  description = "AWS profile to use"
+  default     = "default"
 }
 
 variable "tags" {
@@ -15,7 +16,7 @@ variable "tags" {
   description = "Tags to apply to all resources"
 }
 
-variable "name" {
+variable "queue_name" {
   type        = string
   default     = ""
   description = "description"
@@ -103,4 +104,10 @@ variable "deadletter_message_retention" {
   type        = number
   default     = 345600
   description = "The time in seconds that the message will be invisible in the DLQ"
+}
+
+variable "topic_name" {
+  type        = string
+  description = "Name of the SNS topic"
+  default     = ""
 }

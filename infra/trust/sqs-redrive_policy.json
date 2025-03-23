@@ -1,22 +1,4 @@
 {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Service": [
-          "lambda.amazonaws.com",
-          "sns.amazonaws.com",
-          "cloudshell.amazonaws.com"
-        ]
-      },
-      "Action": [
-        "sqs:SendMessage",
-        "sqs:ReceiveMessage",
-        "sqs:DeleteMessage",
-        "sqs:GetQueueAttributes"
-      ],
-      "Resource": "arn:aws:sqs:${region}:${account}:${queue-name}"
-    }
-  ]
+  "deadLetterTargetArn": "${arn:aws:sqs:${region}:${data.aws_caller_identity.current.account_id}:${var.queue_name}-dlq}",
+  "maxReceiveCount": "${var.deadletter_max_receive_count}"
 }
