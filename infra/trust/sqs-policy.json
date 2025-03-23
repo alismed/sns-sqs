@@ -6,7 +6,6 @@
       "Principal": {
         "Service": [
           "lambda.amazonaws.com",
-          "sns.amazonaws.com",
           "cloudshell.amazonaws.com"
         ]
       },
@@ -17,6 +16,19 @@
         "sqs:GetQueueAttributes"
       ],
       "Resource": "arn:aws:sqs:${region}:${account}:${queue-name}"
+    },
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "sns.amazonaws.com"
+      },
+      "Action": "sqs:SendMessage",
+      "Resource": "arn:aws:sqs:${region}:${account}:${queue-name}",
+      "Condition": {
+        "ArnEquals": {
+          "aws:SourceArn": "arn:aws:sns:${region}:${account}:${queue-name}-topic"
+        }
+      }
     }
   ]
 }
