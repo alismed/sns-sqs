@@ -1,5 +1,5 @@
 resource "aws_sns_topic" "terraform_sns" {
-  name = "${var.name}-topic"
+  name = var.topic_name
   tags = var.tags
 }
 
