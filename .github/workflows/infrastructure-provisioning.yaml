@@ -31,14 +31,14 @@ jobs:
             figlet "Error: Missing terraform.tfvars"
             exit 1
           fi
-          if [ ! -f infra/project.auto.tfvars ]; then
-            figlet "Error: Missing project.auto.tfvars"
+          if [ ! -f infra/terraform.tfvars ]; then
+            figlet "Error: Missing terraform.tfvars"
             exit 1
           fi
 
       - name: Get Region from tfvars
         run: |
-          export REGION=$(grep 'region' infra/project.auto.tfvars | cut -d'"' -f2)
+          export REGION=$(grep 'region' infra/terraform.tfvars | cut -d'"' -f2)
           echo "Region: $REGION"
           echo "REGION=$REGION" >> $GITHUB_ENV
 
