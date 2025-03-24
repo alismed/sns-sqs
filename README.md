@@ -28,6 +28,9 @@ aws configure set endpoint_url http://localhost:4566 --profile localstack
 
 2. Create S3 bucket for Terraform state:
 ```bash
+# Initialize localstack
+localstack start -d
+
 aws --endpoint-url=http://localhost:4566 s3 mb s3://alismed-terraform
 ```
 
@@ -35,9 +38,6 @@ aws --endpoint-url=http://localhost:4566 s3 mb s3://alismed-terraform
 Local development
 
 ```bash
-# Initialize localstack
-localstack start -d
-
 # Set AWS Profile for all commands
 export AWS_PROFILE=localstack
 
