@@ -1,4 +1,4 @@
 {
   "deadLetterTargetArn": "${arn:aws:sqs:${region}:${data.aws_caller_identity.current.account_id}:${var.queue_name}-dlq}",
-  "maxReceiveCount": "${var.deadletter_max_receive_count}"
+  "maxReceiveCount": 3
 }
