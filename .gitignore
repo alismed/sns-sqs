@@ -31,3 +31,5 @@ terraform.rc
 
 # because using github actions
 *.hcl
+
+backend.local.hcl

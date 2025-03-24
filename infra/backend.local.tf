@@ -1,3 +1,9 @@
+/*
+
+# Terraform backend configuration for localstack
+# This configuration is used to store the terraform state file in a localstack s3 bucket
+# This configuration is used only for local development
+
 terraform {
   backend "s3" {
     bucket                      = "alismed-terraform"
@@ -10,3 +16,4 @@ terraform {
     profile                    = "localstack"
   }
 }
+*/
