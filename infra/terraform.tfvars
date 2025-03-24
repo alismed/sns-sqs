@@ -2,7 +2,7 @@
 # - 'github-actions' is the github actions profile
 # - 'localstack' is the localstack profile
 # - 'default' is the default profile
-profile                       = "default"
+profile                       = "github-actions"
 region                        = "us-east-1"
 queue_name                    = "my-queue"
 topic_name                    = "my-topic"
