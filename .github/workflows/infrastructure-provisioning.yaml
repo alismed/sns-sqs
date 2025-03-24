@@ -40,10 +40,21 @@ jobs:
 
       - name: Set up AWS Cli
         uses: aws-actions/configure-aws-credentials@v2
+        id: aws-credentials
+        continue-on-error: true
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.REGION }}
+
+      - name: Check AWS credentials setup
+        if: steps.aws-credentials.outcome == 'failure'
+        run: |
+          ERROR_MSG="${{ steps.aws-credentials.outputs.error-message || 'Failed to configure AWS credentials' }}"
+          echo "Error message: $ERROR_MSG"
+          figlet "AWS Credentials Error"
+          echo "$ERROR_MSG"
+          exit 1
 
       - name: Get Description from pull request
         run: |
