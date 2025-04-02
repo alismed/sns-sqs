@@ -1,0 +1,27 @@
+name: "Infrastructure Workflow"
+
+on:
+  pull_request:
+    types: opened
+    branches: [ main, feature/* ]
+
+jobs:
+  validate:
+    uses: ./.github/workflows/01-validate.yaml
+
+  terraform:
+    needs: validate
+    uses: ./.github/workflows/02-terraform.yaml
+    with:
+      destroy_infra: ${{ needs.validate.outputs.destroy_infra }}
+      region: ${{ needs.validate.outputs.region }}
+    secrets: inherit
+
+  notify:
+    needs: [validate, terraform]
+    uses: ./.github/workflows/03-notify.yaml
+    with:
+      queue_name: ${{ needs.validate.outputs.queue_name }}
+      dlq_name: ${{ needs.validate.outputs.dlq_name }}
+      topic_name: ${{ needs.validate.outputs.topic_name }}
+      destroy_infra: ${{ needs.validate.outputs.destroy_infra }}
