@@ -20,7 +20,7 @@ deadletter_delay_seconds      = 0
 deadletter_max_message_size   = 262144
 deadletter_message_wait_time  = 0
 deadletter_receive_wait_time  = 0
-destroy_infra                 = true
+destroy_infra                 = false
 
 tags = {
   Environment = "dev"
