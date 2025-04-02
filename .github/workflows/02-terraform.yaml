@@ -1,0 +1,33 @@
+name: "Execute Terraform"
+
+on:
+  workflow_call:
+    inputs:
+      destroy_infra:
+        required: true
+        type: string
+      region:
+        required: true
+        type: string
+
+jobs:
+  terraform:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+      
+      - uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ inputs.region }}
+
+      - name: Terraform Operations
+        run: |
+          cd infra
+          terraform init
+          if [ "${{ inputs.destroy_infra }}" == "true" ]; then
+            terraform destroy -auto-approve
+          else
+            terraform apply -auto-approve
+          fi

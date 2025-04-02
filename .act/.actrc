@@ -1,0 +1,6 @@
+-P ubuntu-latest=catthehacker/ubuntu:act-latest
+--env-file=.env
+-s AWS_ACCESS_KEY_ID
+-s AWS_SECRET_ACCESS_KEY
+--eventpath pull_request.json
+--workdir ..

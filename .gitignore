@@ -33,3 +33,10 @@ terraform.rc
 *.hcl
 
 backend.local.hcl
+
+.env
+pull_request.json
+
+# Act testing files
+.act/*
+!.act/.actrc
